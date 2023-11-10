@@ -1,0 +1,284 @@
+first page of doctor app---
+
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DoctorApp
+{
+    internal class DoctorHome
+    {
+        ManageProduct manageProduct;
+        public  DoctorHome()
+        {
+            manageProduct = new ManageProduct();
+        }
+        void DisplayAdminMenu()
+        {
+            Console.WriteLine("1. Add Doctor");
+            Console.WriteLine("2. Update Doctor number");
+            Console.WriteLine("3. modify doctor experirnce");
+            Console.WriteLine("4. Delete Doctor");
+            
+            Console.WriteLine("0. Exit");
+        }
+        void StartAdminActivities()
+        {
+            int choice;
+            do
+            {
+                DisplayAdminMenu();
+                choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 0:
+                        Console.WriteLine("Bye bye");
+                        break;
+                    case 1:
+                        manageProduct.GetProductDetailsFromUser();
+                        break;
+                    case 2:
+                        UpdatePrice();
+                        break;
+                    case 3:
+                        UpdateExper();
+                        break;
+                    case 4:
+                        Console.WriteLine("Doctor Deleted");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Try again");
+                        break;
+                }
+            } while (choice != 0);
+        }
+
+        private void UpdatePrice()
+        {
+            manageProduct.PrintProductDetails();
+            Console.WriteLine("Please enter the new number");
+           
+            int mob_num = Convert.ToInt32(Console.ReadLine());
+            var result = manageProduct.UpdatePrice(mob_num);
+            if (result == true)
+            {
+                Console.WriteLine("number updated");
+                manageProduct.PrintProductDetails();
+            }
+            else
+                Console.WriteLine("Unable to update");
+        }
+        private void UpdateExper()
+        {
+            manageProduct.PrintProductDetails();
+            Console.WriteLine("Please enter the new experience");
+
+            int  exp = Convert.ToInt32(Console.ReadLine());
+            var result = manageProduct.UpdateExper(exp);
+            if (result == true)
+            {
+                Console.WriteLine("experience updated");
+                manageProduct.PrintProductDetails();
+            }
+            else
+                Console.WriteLine("Unable to update");
+        }
+
+
+    
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to my Doctor App");
+            DoctorHome home = new DoctorHome();
+            home.StartAdminActivities();
+        }
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DoctorApp
+{
+    internal class Product
+    {
+        object obj;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Exp { get; set; }
+        public int Mob_num { get; set; }
+        public string Description { get; set; }
+        public double Dprice { get; set; }
+       
+        public Product()
+        {
+            Mob_num = 0;
+           
+            Exp = 1;
+            Dprice = 0;
+        }
+
+        public Product(int id, string name, int exp, int mob_num, string description, double dprice)
+        {
+            Id = id;
+            Name = name;
+            Exp = exp;
+            Mob_num = mob_num;
+            Description = description;
+            Dprice = dprice;
+           
+        }
+        public override string ToString()
+        {
+           // float netPrice = Price - (Price * Discount / 100);
+            return $"Doctor Id : {Id}\nDoctor Name : {Name}\nDoctor mobile num :{Mob_num}\nDoctor experienec : {Exp}" +
+                $"\nDoctor price : {Dprice}";
+        }
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DoctorApp
+{
+    internal class ManageProduct
+    {
+        Product product;
+        public ManageProduct()
+        {
+            product = new Product();
+        }
+        int GenerateId()
+        {
+            return new Random().Next(1, 100);
+        }
+        public void GetProductDetailsFromUser()
+        {
+            product.Id = GenerateId();
+            Console.WriteLine("Please enter the doctor name");
+            product.Name = Console.ReadLine();
+            Console.WriteLine("Please enter the mobile number");
+            product.Mob_num = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("enetr the doctor price");
+            product.Dprice= Convert.ToSingle(Console.ReadLine());
+            Console.WriteLine("Please enter the doctor experience");
+            product.Exp = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Please enter the Doctor description");
+            product.Description = Console.ReadLine();
+           
+        }
+        public void PrintProductDetails()
+        {
+            Console.WriteLine(product);
+        }
+        public bool UpdatePrice(int  mob_num)
+        {
+            if (mob_num >= 0)
+            {
+                product.Mob_num = mob_num;
+                return true;
+            }
+            return false;
+        }
+        public bool UpdateExper(int exp)
+        {
+            if (product.Exp >= 0)
+            {
+                product.Exp = exp;
+                return true;
+            }
+            return false;
+        }
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+output----
+
+
+
+
+Welcome to my Doctor App
+1. Add Doctor
+2. Update Doctor number
+3. modify doctor experirnce
+4. Delete Doctor
+0. Exit
+1
+Please enter the doctor name
+Anand
+Please enter the mobile number
+654563
+enetr the doctor price
+456
+Please enter the doctor experience
+4
+Please enter the Doctor description
+good
+1. Add Doctor
+2. Update Doctor number
+3. modify doctor experirnce
+4. Delete Doctor
+0. Exit
+2
+Doctor Id : 80
+Doctor Name : Anand
+Doctor mobile num :654563
+Doctor experienec : 4
+Doctor price : 456
+Please enter the new number
+89754
+number updated
+Doctor Id : 80
+Doctor Name : Anand
+Doctor mobile num :89754
+Doctor experienec : 4
+Doctor price : 456
+1. Add Doctor
+2. Update Doctor number
+3. modify doctor experirnce
+4. Delete Doctor
+0. Exit
+3
+Doctor Id : 80
+Doctor Name : Anand
+Doctor mobile num :89754
+Doctor experienec : 4
+Doctor price : 456
+Please enter the new experience
+78
+experience updated
+Doctor Id : 80
+Doctor Name : Anand
+Doctor mobile num :89754
+Doctor experienec : 78
+Doctor price : 456
+1. Add Doctor
+2. Update Doctor number
+3. modify doctor experirnce
+4. Delete Doctor
+0. Exit
+Doctor Deleted
+1. Add Doctor
+2. Update Doctor number
+3. modify doctor experirnce
+4. Delete Doctor
+0. Exit
