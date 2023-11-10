@@ -1,0 +1,128 @@
+CREATE DATABASE ANAND;
+
+USE ANAND;
+
+CREATE TABLE EMP (
+    empno INT PRIMARY KEY,
+    empname VARCHAR(50),
+    salary DECIMAL(10, 2),
+    deptname VARCHAR(50) ,
+	bossno int
+    
+);
+
+insert into EMP values(1,'anand',56000,'hr',6),(2,'ANIL',32000,'it',7);
+
+CREATE TABLE DEPARTMENT (
+    deptname VARCHAR(50) PRIMARY KEY,
+    floor INT,
+    phone VARCHAR(15),
+    empno INT 
+);
+
+insert into department values('hr',2,4565,1),('it',3,3535,2);
+
+alter table emp add foreign key (deptname) references DEPARTMENT(deptname);
+
+
+alter table department add foreign key (empno) references emp(empno);
+
+CREATE TABLE ITEM (
+    itemname VARCHAR(50) PRIMARY KEY,
+    itemtype VARCHAR(50),
+    itemcolor VARCHAR(50)
+);
+
+insert into item values('pen','abc','grey');
+
+CREATE TABLE SALES (
+    salesno INT PRIMARY KEY,
+    saleqty INT,
+    itemname VARCHAR(50) NOT NULL REFERENCES ITEM(itemname),
+    deptname VARCHAR(50) NOT NULL REFERENCES DEPARTMENT(deptname)
+);
+
+insert into sales values(12,2,'pen','hr');
+
+select * from emp;
+
+select * from DEPARTMENT;
+
+select * from sales;
+
+
+update emp set salary=30000 where empno=1 and empname='anand'; 
+
+select * from emp;
+
+ drop table emp;
+
+ drop table department;
+
+ drop table sales;
+
+drop table items;
+
+
+CREATE TABLE EMP (
+    empno INT PRIMARY KEY,
+    empname VARCHAR(50),
+    salary DECIMAL(10, 2),
+    deptname VARCHAR(50) ,
+	bossno int
+    
+);
+
+insert into EMP values(1,'anand',56000,'hr',6),(2,'ANIL',32000,'it',7);
+
+CREATE TABLE DEPARTMENT (
+    deptname VARCHAR(50) PRIMARY KEY,
+    floor INT,
+    phone VARCHAR(15),
+    empno INT 
+);
+
+insert into department values('hr',2,4565,1),('it',3,3535,2);
+
+alter table emp add foreign key (deptname) references DEPARTMENT(deptname);
+
+
+alter table department add foreign key (empno) references emp(empno);
+
+CREATE TABLE ITEM (
+    itemname VARCHAR(50) PRIMARY KEY,
+    itemtype VARCHAR(50),
+    itemcolor VARCHAR(50)
+);
+
+insert into item values('pen','abc','grey');
+
+CREATE TABLE SALES (
+    salesno INT PRIMARY KEY,
+    saleqty INT,
+    itemname VARCHAR(50) NOT NULL REFERENCES ITEM(itemname),
+    deptname VARCHAR(50) NOT NULL REFERENCES DEPARTMENT(deptname)
+);
+
+insert into sales values(12,2,'pen','hr');
+
+select * from emp;
+
+select * from DEPARTMENT;
+
+select * from sales;
+
+
+update emp set salary=40000 where empno=1 and empname='anand'; 
+
+select * from emp;
+
+
+
+ delete from item where itemcolor='grey';
+
+
+ 
+ insert into item values('pen','abc','grey');
+
+ drop database ANAND;
