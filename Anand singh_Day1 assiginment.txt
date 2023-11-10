@@ -1,0 +1,147 @@
+1)
+
+using System;
+
+public class Add
+{
+    public void add()
+    {
+        int a=Convert.ToInt32(Console.ReadLine());
+        int b=Convert.ToInt32(Console.ReadLine());
+        int c=a+b;
+        Console.WriteLine(c);
+    }
+
+    public static void Main(string []args)
+    {
+        Add a1=new Add();
+        a1.add();
+       
+    }
+}
+
+
+2)
+
+using System;
+class Big
+{
+    void findbiggest()
+    {
+        int a=Convert.ToInt32(Console.ReadLine());
+        int b=Convert.ToInt32(Console.ReadLine());
+        if(a>b)
+        {
+            Console.WriteLine(a);
+        }
+        else
+        {
+            Console.WriteLine(b);
+        }
+    }
+    public static void Main(string []args)
+    {
+        Big b1=new Big();
+        b1.findbiggest();
+    }
+}
+
+
+3)
+
+using System;
+class Evenfind
+{
+    static void findeven()
+    {
+        int a=Convert.ToInt32(Console.ReadLine());
+        if(a%2==0)
+        {
+            Console.WriteLine("even number");
+        }
+        else
+        {
+            Console.WriteLine("not an even number");
+        }
+    }
+    static void Main(string []args)
+    {
+        findeven();
+    }
+}
+
+
+4)
+
+using System;
+class Prime
+{
+    void findprime()
+    {
+        int a=Convert.ToInt32(Console.ReadLine());
+        int m=a/2;
+        int flag=0;
+        for(int i=2;i<=m;i++)
+        {
+            if(a%i==0)
+            {
+                Console.WriteLine("not a prime number");
+                flag=1;
+                break;
+            }
+            
+        }
+        if(flag==0)
+        {
+            Console.WriteLine("prime number");
+        }
+    }
+    public static void Main(string []args)
+    {
+        Prime p1=new Prime();
+        p1.findprime();
+    }
+}
+
+
+5)
+
+using System;
+class Square
+{
+    void find()
+    {
+        int num=Convert.ToInt32(Console.ReadLine());
+        int c=num*num;
+        Console.WriteLine(c);
+    }
+    public static void Main(string []args)
+    {
+        Square s1=new Square();
+        s1.find();
+    }
+}
+
+6)
+
+
+using System;
+class Avg
+{
+    void findavg()
+    {
+        float num,sum=0;
+        for(int i=0;i<10;i++)
+        {
+            num=Convert.ToInt32(Console.ReadLine());
+            sum=sum+num;
+        }
+        float avg=sum/10;
+        Console.WriteLine(avg);
+    }
+    public static void Main(string []args)
+    {
+        Avg a1=new Avg();
+        a1.findavg();
+    }
+}
